@@ -3,21 +3,21 @@
 ## Running the application
 
 1. Clone or download the repository
-```
-$> git clone  https://github.com/afzal273/uda-fend-website-optimization-project.git
-$> cd uda-fend-website-optimization-project
-```
+  ```
+  $> git clone  https://github.com/afzal273/uda-fend-website-optimization-project.git
+  $> cd uda-fend-website-optimization-project
+  ```
 
 1. Start the local server
-```
-$> python -m SimpleHTTPServer 8080
-```
+  ```
+  $> python -m SimpleHTTPServer 8080
+  ```
 
 1. Download and install [ngrok](https://ngrok.com/) to the top-level of your project directory to make your local server accessible remotely.
-```
-$> cd fend-website-optimization-project
-$> ./ngrok http 8080
-```
+  ```
+  $> cd fend-website-optimization-project
+  $> ./ngrok http 8080
+  ```
 
 1. Copy the public URL ngrok gives you and run it through PageSpeed Insights!
 
