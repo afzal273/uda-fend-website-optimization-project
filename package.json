@@ -1,0 +1,21 @@
+{
+  "name": "uda-website-optimization",
+  "version": "1.0.0",
+  "description": "Website Optimization",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "optimization"
+  ],
+  "author": "AS",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-responsive-images": "^0.1.9"
+  }
+}
