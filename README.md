@@ -4,8 +4,8 @@
 
 1. Clone or download the repository
 ```
-$> git clone
-$> cd fend-website-optimization-project
+$> git clone  https://github.com/afzal273/uda-fend-website-optimization-project.git
+$> cd uda-fend-website-optimization-project
 ```
 
 2. Start the local server
