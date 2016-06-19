@@ -458,8 +458,8 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -496,11 +496,18 @@ function updatePositions() {
   // Get scrollTop once so it doesn't have to be calculated multiple times in for loop
   var scrollTop = document.body.scrollTop;
 
-  // Change the left property on pizzas so it animates
-  for (var i = 0; i < items.length; i++) {
-      var phase = Math.sin((scrollTop / 1250) + (i % 5));
-      items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  // Create a phase variable
+  var phase = [];
+
+  for (var i = 0; i < 5; i++) {
+    phase.push(Math.sin(scrollTop / 1250 + i) * 100);
   }
+
+  // Change the left property on pizzas so it animates
+  for (i = 0; i < items.length; i++) {
+      items[i].style.left = items[i].basicLeft + phase[i%5] + 'px';
+  }
+
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -512,16 +519,21 @@ function updatePositions() {
   }
 }
 
-// runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+// Using window.requestAnimationFrame method as a parameter to the scroll event listener
+// this will put animations together into a single reflow and repaint cycle.
+window.addEventListener('scroll', function() {
+  window.requestAnimationFrame(updatePositions);
+});
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  // Since each pizza has 100 px height and there are 8 columns/pizzas per row; number of pizzas will be
+  // (height of Page / height of each pizza) * number of pizzas per row
+  var numPizzas = Math.floor((window.innerHeight / 100) * cols);
+  for (var i = 0; i < numPizzas; i++) {
     // There are 200 pizzas getting created on page load
-    // Do we need to animate all of them even though they might not be on the screen?
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
