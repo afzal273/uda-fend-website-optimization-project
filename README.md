@@ -34,7 +34,10 @@ updating the item style. This will cause forced synchronous layout (FSL) as layo
 - In order to mitigate this, evaluated the scrollTop once before iterating over the items and used the value inside the for loop.
 - Put each mover pizza in its own layer using `backface-visibility: hidden`, this will enable hardware accelerated composition and offload work to the GPU.
 - Used window.requestAnimationFrame method as a parameter to the scroll event listener, this will put animations together into a single reflow and repaint cycle.
+- Calculate length of the array only one and not each time the for loop is run (line 514)
 
 ## For making time to resize pizzas in less than 5ms
 - The existing `changePizzaSizes` function did a lot of unnecessary selections and calculations inside the for loop for each pizza inside the for loop causing excessive layouts/paints resulting in FSL.
 - Simplified `changePizzaSizes` to use one of the 3 pizza sizes which would be the result of changing the slider. The resulting size will have the same width for all pizzas so it's calculated only once and the width is applied to all pizzas.
+- Used `getElementById` and `getElementByClassName` instead of `document.querySelector` which will result in faster lookups (line 411, 468, 544)
+- Calculate length of the array only one and not each time the for loop is run (line 450)
